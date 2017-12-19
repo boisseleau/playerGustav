@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+<% include ../home.ejs %>
+
+<h2>Créer une nouvelle vidéo</h2>
+
+<form action="" method="post">
+    <label for="titreVideo">Titre* :</label>
+    <input id="titreVideo" type="text" name="titre" placeholder="ex: Spot publicitaire été 2017" <% if(titre){%> value="<%= titre %>" <%} %> required><br>
+
+    <label for="URL">Adresse Url de la vidéo* :</label>
+    <input id="URL" type="text" name="adresseURL" placeholder="ex: D:/videos/spot_publicitaire_ete_2017" <% if(adresseURL){%> value="<%= adresseURL %>" <%} %> required><br>
+
+    <label for="duree">Durée* :</label>
+    <input id="duree" type="text" name="duree" placeholder="ex: 1 mn 30" <% if(duree){%> value="<%= duree %>" <%} %> required><br>
+
+    <label for="poids">Poids:</label>
+    <input id="poids" type="text" name="poids" placeholder="ex: 200 Mo" <% if(poids){%> value="<%= poids %>" <%} %>><br>
+
+    <label for="resolution">Résolution:</label>
+    <input id="resolution" type="text" name="resolution" placeholder="ex: 1600*1200" <% if(resolution){%> value="<%= resolution %>" <%} %>><br>
+
+    <fieldset>
+        <legend>Cochez l'une des deux cases ou les deux en fonction du type de la vidéo* :</legend>
+
+        <label for="nonHolographique">Non Holographique:</label>
+        <input id="nonHolographique" type="checkbox" name="holographique" value="0"
+                <% if(Holographiques) { Holographiques.forEach(function (Holographique) { if(Holographique == "0") {%> checked="checked"<%}})}%>>
+
+        <label for="holographique">Holographique:</label>
+        <input id="holographique" type="checkbox" name="holographique" value="1"
+                <% if(Holographiques) { Holographiques.forEach(function (Holographique) { if(Holographique == "1") {%> checked="checked"<%}})}%>>
+    </fieldset>
+
+    <label for="clientVideo">Client:</label>
+    <select id="clientVideo" name="client">
+        <option></option>
+        <% utilisateurs.forEach(function(utilisateur) { %>
+        <option value="<%= utilisateur.id %>" <% if(client){if(utilisateur.id == client){%>selected=selected<%}}%>><%= utilisateur.username %></option>
+        <% }); %>
+    </select><br>
+
+    <input type="submit">
+</form>
+
+<% if (err) { %>
+<span style="color:red"><%= err %></span>
+<% } %>
+
+<br>
+* Obligatoire
+
+<br><br>
+<a href="/admin/video">Retourner à la liste des vidéos</a>
+
+
+
+</body>
+</html>

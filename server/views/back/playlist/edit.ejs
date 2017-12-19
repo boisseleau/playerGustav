@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+<% include ../home.ejs %>
+
+<h2>Modifier la playlist <%= playlist.nomPlaylist %></h2>
+
+<form action="" method="post">
+    <label for="nomPlaylist">Nom* :</label>
+    <input id="nomPlaylist" type="text" name="nom" placeholder="Nom" value="<%= playlist.nomPlaylist %>" required><br>
+
+    <label for="clientPlaylist" hidden>Client:</label>
+    <input id="clientPlaylist" name="client" value="<%= utilisateur.id %>" hidden>
+    <% if(admin) {%>
+        <input name="admin" value="true" hidden>
+    <%} else {%>
+        <input name="admin" value="false" hidden>
+    <% } %>
+
+    <fieldset>
+        <legend>Holocubes:</legend>
+        <% holocubes.forEach(function(holocube) { %>
+        <label for="<% holocube.id %>"><%= holocube.nomHolocube %></label>
+        <% if(Holocubes) {%> <input id="<% holocube.id %>" type="checkbox" name="holocube" value="<%= holocube.id %>"
+            <% Holocubes.forEach(function (Holocube) { if(Holocube == holocube.id) {%> checked="checked"<%}})%>>
+        <%} else {%>
+            <input id="<% holocube.id %>" type="checkbox" name="holocube" value="<%= holocube.id %>"
+                   <% if(playlist.id === holocube.playlistId) { %>checked=checked<% } %>>
+        <% }}); %>
+    </fieldset>
+
+    <fieldset>
+        <legend>Vidéos:</legend>
+        <% videos.forEach(function(video) { %>
+        <label for="<% video.id %>"><%= video.nomVideo %></label>
+        <% if(Videos) {%> <input id="<% video.id %>" type="checkbox" name="video" value="<%= video.id %>"
+                <% Videos.forEach(function (Video) { if(Video == video.id) {%> checked="checked"<%}})%>>
+        <%} else {%>
+        <input id="<% video.id %>" type="checkbox" name="video" value="<%= video.id %>" <% videosPlaylists.forEach(function (videoPlaylist) {
+        if(video.id === videoPlaylist.videoId) { if(videoPlaylist.playlistId === playlist.id) {%>checked=checked<%}}})%>>
+        <% }}) %>
+    </fieldset>
+
+    <input type="submit">
+</form>
+
+<% if (err) { %>
+<span style="color:red">L'enregistrement a échoué, veuillez recommencer</span>
+<% } %>
+
+<br>
+* Obligatoire
+
+<br><br>
+<% if(admin) {%>
+<a href="/admin/playlist/<%= utilisateur.id %>">Retourner à la liste des playlists</a>
+<%} else {%>
+<a href="/admin/playlist">Retourner à la liste des playlists</a>
+<% } %>
+
+
+
+</body>
+</html>

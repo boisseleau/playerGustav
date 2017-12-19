@@ -1,0 +1,48 @@
+{
+  "name": "utilisateur",
+  "plural": "utilisateurs",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "folder": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "holocubes": {
+      "type": "hasMany",
+      "model": "holocube",
+      "foreignKey": "utilisateurId"
+    },
+    "videos": {
+      "type": "hasMany",
+      "model": "video",
+      "foreignKey": "utilisateurId"
+    },
+    "playlists": {
+      "type": "hasMany",
+      "model": "playlist",
+      "foreignKey": "utilisateurId"
+    },
+    "roles": {
+      "type": "hasMany",
+      "model": "Role",
+      "foreignKey": "principalId",
+      "through": "RoleMapping"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "login"
+    }
+  ],
+  "methods": {}
+}

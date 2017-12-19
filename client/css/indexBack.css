@@ -1,0 +1,42 @@
+h2 {
+
+    text-align: center;
+}
+
+#lien {
+
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#liens {
+
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#create {
+
+    margin-right: 40px;
+}
+
+a.btn.btn-default {
+
+    background-color: #599fd8;
+    color: white;
+    border-color: #0c61a9;
+}
+
+#modifProfil {
+
+    display: block;
+    margin: auto;
+    width: 200px;
+}
+
+.container {
+    padding-bottom: 30px;
+}
+
+

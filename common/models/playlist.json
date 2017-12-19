@@ -1,0 +1,35 @@
+{
+  "name": "playlist",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nomPlaylist": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "utilisateur": {
+      "type": "belongsTo",
+      "model": "utilisateur",
+      "foreignKey": "utilisateurId"
+    },
+    "holocubes": {
+      "type": "hasMany",
+      "model": "holocube",
+      "foreignKey": "playlistId"
+    },
+    "videos": {
+      "type": "hasMany",
+      "model": "video",
+      "foreignKey": "playlistId",
+      "through": "playlist_video"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

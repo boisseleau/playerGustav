@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+
+<h1>Modifier l'utilisateur </h1>
+<a href="/">Accueil></a><a href="/admin">Administration></a><a href="/admin/utilisateur">Utilisateur</a>
+
+<% include ../home.ejs %>
+
+<h2>Modifier l'utilisateur </h2>
+
+<form action="" method="post">
+    <label for="nomUtilisateur">Nom* :</label>
+    <input id="nomUtilisateur" type="text" name="nom" placeholder="ex: Maison d'en France" value="<%= utilisateur.username %>" required><br>
+    <label for="mailUtilisateur">E-mail* :</label>
+    <input id="mailUtilisateur" type="text" name="mail" placeholder="ex: paul.jean@gmail.fr" value="<%= utilisateur.email %>" required><br>
+    <input type="submit">
+</form>
+
+<% if (err) { %>
+<span style="color:red">L'enregistrement a échoué, veuillez recommencer</span>
+<% } %>
+
+<br>
+* Obligatoire
+
+<br><br>
+<a href="/admin/utilisateur">Retourner à la liste des utilisateurs</a>
+
+
+
+</body>
+</html>

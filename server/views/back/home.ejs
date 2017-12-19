@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <div id="" class="row">
+            <div id="logo" class="col-lg-1"></div>
+            <div class="col-lg-offset-2 col-lg-4"><h1>Espace de gestion</h1></div>
+            <!--<div class="col-lg-offset-2 col-lg-1"><a href="/">Page d'accueil</a></div>-->
+            <!--<div class="col-lg-1"><a href="/admin/utilisateur/profil">Profil</a></div>-->
+            <!--<div class="col-lg-1"><a href="/logout">Déconnexion</a></div>-->
+        </div>
+    </div>
+</div>
+<div id="navbar">
+    <div class="container">
+        <div class="row">
+            <div class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header"></div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <% if(role === "superAdmin") {%>
+                            <li><a href="/admin/utilisateur">Utilisateurs</a></li>
+                            <li><a href="/admin/holocube">Holocubes</a></li>
+                            <li><a href="/admin/video">Vidéos</a></li>
+                            <li><a href="/admin/clientplaylist">Playlists</a></li>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/admin/utilisateur/profil">Profil</a></li>
+                            <li><a href="/logout">Déconnexion</a></li>
+                            <% } else {%>
+                            <li><div class="col-lg-2"><a href="/admin/holocube">Holocubes</a></div></li>
+                            <li><div class="col-lg-2"><a href="/admin/video">Vidéos</a></div></li>
+                            <li><div class="col-lg-2"><a href="/admin/playlist">Playlists</a></div></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!--<div class="col-lg-2"><a href="/admin/utilisateur">Utilisateurs</a></div>-->
+            <!--<div class="col-lg-2"><a href="/admin/holocube">Holocubes</a></div>-->
+            <!--<div class="col-lg-2"><a href="/admin/video">Vidéos</a></div>-->
+            <!--<div class="col-lg-2"><a href="/admin/clientplaylist">Playlists</a></div>-->
+        <!---->
+            <!--<div class="col-lg-2"><a href="/admin/holocube">Holocubes</a></div>-->
+            <!--<div class="col-lg-2"><a href="/admin/video">Vidéos</a></div>-->
+            <!--<div class="col-lg-2"><a href="/admin/playlist">Playlists</a></div>-->
+
+</body>
+</html>
+
+<style>
+    body {
+        background: #f6fcff;
+    }
+
+    #header {
+        background: #e2dfde;
+        height: 130px;
+    }
+
+    #navbar {
+        background: #222;
+        height: 50px;
+    }
+
+    #logo {
+        background: black;
+        height: 90px;
+    }
+
+    .navbar-inverse {
+        border: none;
+    }
+</style>

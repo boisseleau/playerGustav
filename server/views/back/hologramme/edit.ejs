@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+<% include ../home.ejs %>
+
+<h2>Modifier l'holocube <%= holocube.nomHolocube %></h2>
+
+<form action="" method="post">
+    <label for="nomHolocube">Nom* :</label>
+    <input id="nomHolocube" type="text" name="nom" placeholder="ex: Holocube_Nantes" value="<% if(nom) {%><%= nom %><%} else {%><%= holocube.nomHolocube %><%}%>" required><br>
+
+    <label for="adresseIP">Adresse IP* :</label>
+    <input id="adresseIP" type="text" name="adresseIP" placeholder="ex: 172.16.254.1" value="<% if(adresseIP) {%><%= adresseIP %><%} else {%><%= holocube.adresseIP %><%}%>" required><br>
+
+    <label for="mdpHolocube">Mot de passe* :</label>
+    <input id="mdpHolocube" type="password" name="password" value="<% if(mdp) {%><%= mdp %><%} else {%><%= holocube.mdp %><%}%>" required><br>
+
+    <label for="clientHolo">Client:</label>
+    <select id="clientHolo" name="client">
+        <option></option>
+        <% utilisateurs.forEach(function(utilisateur) { %>
+        <option value="<%= utilisateur.id %>" <% if(client){if(utilisateur.id == client){%>selected="selected" <%}} else { if(holocube.utilisateurId === utilisateur.id) { %>selected="selected"<% }} %> ><%= utilisateur.username %></option>
+        <% }); %>
+    </select><br>
+
+    <input type="submit">
+</form>
+
+<% if (err) { %>
+<span style="color:red">L'enregistrement a échoué, veuillez recommencer</span>
+<% } %>
+
+<br>
+* Obligatoire
+
+<br><br>
+<a href="/admin/holocube">Retourner à la liste des holocubes</a>
+
+
+
+</body>
+</html>

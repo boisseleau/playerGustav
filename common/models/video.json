@@ -1,0 +1,49 @@
+{
+  "name": "video",
+  "plural": "videos",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "duree": {
+      "type": "string",
+      "required": true
+    },
+    "nomVideo": {
+      "type": "string",
+      "required": true
+    },
+    "poids": {
+      "type": "string"
+    },
+    "resolution": {
+      "type": "string"
+    },
+    "holographique": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "utilisateur": {
+      "type": "belongsTo",
+      "model": "utilisateur",
+      "foreignKey": "utilisateurId"
+    },
+    "playlists": {
+      "type": "hasMany",
+      "model": "playlist",
+      "foreignKey": "videoId",
+      "through": "playlist_video"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

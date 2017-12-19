@@ -1,0 +1,70 @@
+h2 {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+
+#form {
+    margin: auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+div.form-group {
+    margin-bottom: 30px;
+}
+
+input.form-control, select.form-control {
+    width: 68%;
+    float: right;
+}
+
+label {
+    display: block;
+    float: left;
+}
+
+#submit {
+    display: block;
+    margin: auto;
+    width: 100px;
+    background-color: white;
+    border-color: #000;
+    margin-bottom: 30px;
+}
+
+p {
+    padding-bottom: 50px;
+}
+
+#lien {
+    text-align: center;
+}
+
+#changePass {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#return {
+    margin-top: 15px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1050px) {
+
+    #form {
+        margin: auto;
+        width: 80%;
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    input.form-control, select.form-control {
+        width: 60%;
+        float: right;
+    }
+}
+

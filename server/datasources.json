@@ -1,0 +1,42 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "gustavtest": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "gustavtest",
+    "password": "",
+    "name": "gustavtest",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "Email": {
+    "name": "Email",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "SMTP",
+        "host": "smtp.gmail.com",
+        "tls":{
+          "rejectUnauthorized": false
+        },
+        "secure": true,
+        "port": 465,
+        "auth": {
+          "user": "boisseleau85430@gmail.com",
+          "pass": "dsd445a889"
+        }
+      }
+    ]
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "server/video",
+    "maxFileSize": "1213048576"
+  }
+}

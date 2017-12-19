@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+<h1>Page de connexion</h1>
+<script src="../js/login.js"></script>
+
+<form action="" method="post">
+    <label for="email">Email:</label>
+    <input id="email" type="text" name="email" placeholder="ex: paul.durand@gmail.fr"><br>
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password"><br>
+    <input id="submit" type="submit" value="Login">
+</form><a href="/password-reset">Mot de passe oublié ?</a>
+
+<% if (loginFailed) { %>
+<span style="color:red">Email ou mot de passe incorrect</span>
+<% } %>
+
+
+</body>
+</html>
