@@ -1,0 +1,116 @@
+/********** BLOCS ***********/
+
+#top {
+    margin-bottom: 0px;
+}
+
+#banner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+}
+
+/********** IMAGES ***********/
+
+#logo {
+    height: 50px;
+    padding-left: 2%;
+}
+
+#bannerTitle {
+    width: 100%;
+    height: auto;
+}
+
+.video-conteneur {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+}
+
+.video-conteneur iframe,
+.video-conteneur object,
+.video-conteneur embed {
+    position:absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%);
+    width:60%;
+    height:60%;
+}
+
+/********** TITRES ***********/
+
+#navbarTitle {
+    position: absolute;
+    margin-left: 65px;
+    margin-top: 12px;
+    color: white;
+    font-family:  'Economica', sans-serif;
+}
+
+ul {
+    padding-right: 2%;
+}
+
+
+#introduction {
+    text-align: center;
+    padding-bottom: 60px;
+    font-family:  'Economica', sans-serif;
+    font-size: 200%;
+}
+
+#companyTitle{
+    text-align: center;
+    padding-bottom: 40px;
+    font-family:  'Economica', sans-serif;
+    font-size: 600%;
+}
+
+#paragraphe {
+    text-align: center;
+}
+
+/********** PARTICULES ***********/
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    background-color: #140f0f;
+    background-image: url("../../../img/repetition.jpg");
+}
+
+@media screen and (max-width: 500px) {
+
+    #navbarTitle {
+        font-size: 16px;
+        margin-top: 17px;
+    }
+
+    #companyTitle{
+        text-align: center;
+        padding-bottom: 40px;
+        font-family:  'Economica', sans-serif;
+        font-size: 400%;
+    }
+
+    #companyTitle:before, #companyTitle:after {
+        content:'';
+        width:0em;
+        border-bottom: rgba(0, 0, 0, 0.3) solid;
+        display:inline-block;
+        vertical-align:middle;
+    }
+    #companyTitle:before {
+        margin-left:0%;
+        margin-right:0em
+    }
+    #companyTitle:after {
+        margin-right:0%;
+        margin-left:0em;
+    }
+}

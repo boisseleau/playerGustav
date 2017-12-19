@@ -1,0 +1,36 @@
+#banner {
+    width: 100%;
+    height: 170px;
+    background-image: url("../../../img/repetitionback.jpg");
+    position: relative;
+}
+
+#bannerTitle {
+    width: 100%;
+    height: auto;
+}
+
+.navbar-inverse {
+    margin-bottom: 0px;
+}
+
+@media screen and (min-width: 1050px) {
+
+    #bannerTitle {
+        width: 1063px;
+        height: 166px;
+        display: block;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+
+    #bannerTitle {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

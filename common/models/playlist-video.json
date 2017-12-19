@@ -1,0 +1,24 @@
+{
+  "name": "playlist_video",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "playlist": {
+      "type": "belongsTo",
+      "model": "playlist",
+      "foreignKey": "playlistId"
+    },
+    "video": {
+      "type": "belongsTo",
+      "model": "video",
+      "foreignKey": "videoId"
+    }
+  },
+  "acls": [ ],
+  "methods": {}
+}

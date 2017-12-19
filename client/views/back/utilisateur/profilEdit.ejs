@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+<script type="application/javascript" src="../../../js/back/home.js"></script>
+
+<h2></h2>
+
+<div id="alert"></div><br><br><br>
+
+<div id="form"></div>
+
+
+<br><br>
+<p></p>
+
+<br><br>
+<div id="lien1"></div>
+<div id="lien"></div>
+
+
+<script type="application/javascript">
+    $(document).ready(function() {
+
+        if (localStorage.getItem('accessToken') !== null) {
+            getUtilisateur()
+        }
+
+    });
+
+
+    function getUtilisateur() {
+
+        let apiUrl = 'http://localhost:3000/api/';
+        let $form = $('#form')
+        $.get(apiUrl + 'utilisateurs/'+ localStorage.getItem('accessToken')+'/idUser').then(function (res) {
+
+            $.get(apiUrl + 'utilisateurs/'+ res.idUser ).then(function (utilisateur) {
+                    console.log(utilisateur)
+                    $('h2').text('modifier l\'utilisateur');
+                    let html = '<form class="form-horizontal" action="" method="">';
+                    html += '<div class="form-group">';
+                    html += '<label for="nomUtilisateur" class="col-sm-2 control-label">Nom* :</label> <div class="col-sm-4">';
+                    html += '<input id="nomUtilisateur" class="form-control" type="text" name="nom" aria-describedby="emailHelp" value="'+ utilisateur.username +'" ></div></div><br>';
+
+                    html += '<div class="form-group"><label for="mailUtilisateur" class="col-sm-2 control-label">E-mail* :</label><div class="col-sm-4">';
+                    html += '<input id="mailUtilisateur" class="form-control" type="email" name="mail" aria-describedby="emailHelp" value="'+ utilisateur.email +'" ></div></div><br>';
+
+                    html += '<div class="form-group"><div class="col-sm-offset-2 col-sm-10"><button type="submit" id="submit" class="btn btn-primary">Valider</button></div></div>';
+                    html += '</form>';
+                    $('p').text('*: champ obligatoire')
+
+
+                    $form = $('#form');
+                    $form.append(html);
+
+                    $('#lien1').html('<a href="/admin/utilisateur/'+ utilisateur.id +'/change-password">Modifer le mot de passe !</a>');
+                    $('#lien').html('<a href="/admin/utilisateur">Retourner à la liste des utilisateurs</a>');
+                    $('#submit').on('click', handleForm);
+
+            })
+        });
+    }
+
+    function handleForm(e) {
+        e.preventDefault();
+        let $username, $email;
+        $username = $('#nomUtilisateur');
+        $email = $('#mailUtilisateur');
+        
+        let user = {
+            username: $username.val(),
+            email: $email.val()
+        };
+        
+        $.get(apiUrl + 'utilisateurs/'+ window.localStorage.getItem('accessToken')+'/idUser').then(function (res) {
+            $.ajax({
+                url: apiUrl + 'utilisateurs/' + res.idUser + '/update', 
+                type: 'PUT',
+                data: user,
+                success: function (data) {
+                    $('#alert').html('<div class="col-sm-6"><div class="alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Success!</strong>L\'utilisateur a bien été modifier !.</div></div><br><br>');
+                    setTimeout(function () {
+                        window.localStorage.removeItem('accessToken');
+                        window.location = "http://localhost:3000/login"
+                    }, 1500);
+
+                },
+                error: function(err) {
+                    console.log('error', err);
+                     $('#alert').html('<div class="alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a>\<strong>Erreur!</strong> Un ou plusieurs champs sont mal saisie !.</div>')
+                }
+            });
+        });
+    }
+
+</script>
+
+</body>
+</html>

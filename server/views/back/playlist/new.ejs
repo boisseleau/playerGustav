@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+
+<% include ../home.ejs %>
+
+<h2>Créer une nouvelle playlist</h2>
+
+<form action="" method="post">
+    <label for="nomPlaylist">Nom* :</label>
+    <input id="nomPlaylist" type="text" name="nom" placeholder="Nom" <% if(nom) {%> value="<%= nom %>" <%} %> required><br>
+
+    <% if(admin) {%>
+        <label for="clientPlaylist">Client: <%= utilisateur.username %></label>
+        <input id="clientPlaylist" name="client" value="<%= utilisateur.id %>" hidden>
+        <input name="admin" value="true" hidden>
+    <%} else {%>
+        <label for="clientPlaylist" hidden>Client:</label>
+        <input id="clientPlaylist" name="client" value="<%= utilisateur.id %>" hidden>
+        <input name="admin" value="false" hidden>
+    <% } %>
+
+    <fieldset>
+        <legend>Holocubes:</legend>
+        <% holocubes.forEach(function(holocube) { %>
+        <label for="<% holocube.id %>"><%= holocube.nomHolocube %></label>
+        <input id="<% holocube.id %>" type="checkbox" name="holocube" value="<%= holocube.id %>"
+                <% if(Holocubes) { Holocubes.forEach(function (Holocube) { if(Holocube == holocube.id) {%> checked="checked"<%}})}%>>
+        <% }); %>
+    </fieldset>
+
+    <fieldset>
+        <legend>Vidéos:</legend>
+        <% videos.forEach(function(video) { %>
+        <label for="<% video.id %>"><%= video.nomVideo %></label>
+        <input id="<% video.id %>" type="checkbox" name="video" value="<%= video.id %>"
+                <% if(Videos) { Videos.forEach(function (Video) { if(Video == video.id) {%> checked="checked"<%}})}%>>
+        <% }) %>
+    </fieldset>
+
+    <input type="submit">
+</form>
+
+<% if (err) { %>
+<span style="color:red">L'enregistrement a échoué, veuillez recommencer</span>
+<% } %>
+
+<br>
+* Obligatoire
+
+<br><br>
+<% if(admin) {%>
+<a href="/admin/playlist/<%= utilisateur.id %>">Retourner à la liste des playlists</a>
+<%} else {%>
+<a href="/admin/playlist">Retourner à la liste des playlists</a>
+<% } %>
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+
+<h1>Modifier la vidéo </h1>
+
+<% include ../home.ejs %>
+
+
+<form action="" method="post">
+    <label for="titre">Titre:</label>
+    <input id="titre" type="text" name="titre" placeholder="Titre de la vidéo" value="<%= video.nomVideo %>" required><br>
+
+
+    <label for="duree">Durée:</label>
+    <input id="duree" type="text" name="duree" placeholder="durée" value="<%= video.duree %>" ><br>
+
+      <label for="poids">Poids:</label>
+        <input id="poids" type="text" name="poids" placeholder="poids de la vidéo" value="<%= video.poids %>" required><br>
+
+        <label for="resolution">Résolution:</label>
+        <input id="resolution" type="text" name="resolution" placeholder="Résolution en pixel" value="<%= video.resolution %>" required><br>
+
+    <label for="clientVideo">Client:</label>
+    <select id="clientVideo" name="client">
+        <option id="empty"></option>
+    </select><br>
+
+
+    <input type="submit">
+</form>
+
+
+<br><br>
+<a href="/admin/utilisateur">Retourner à la liste des utilisateurs</a>
+
+<% if (err) { %>
+<span style="color:red">L'enregistrement a échoué, veuillez recommencer</span>
+<% } %>
+
+</body>
+</html>

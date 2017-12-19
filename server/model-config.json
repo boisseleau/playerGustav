@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "gustavtest",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "gustavtest",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "gustavtest",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "Role": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "video": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "holocube": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "playlist": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "utilisateur": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "playlist_video": {
+    "dataSource": "gustavtest",
+    "public": true
+  },
+  "Email": {
+    "dataSource": "Email",
+    "public": false
+  },
+  "Container": {
+    "dataSource": "storage",
+    "public": true
+  }
+}

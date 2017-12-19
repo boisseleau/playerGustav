@@ -1,0 +1,39 @@
+{
+  "name": "holocube",
+  "plural": "holocubes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "adresseIP": {
+      "type": "string",
+      "required": true
+    },
+    "mdp": {
+      "type": "string",
+      "required": true
+    },
+    "nomHolocube": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "utilisateur": {
+      "type": "belongsTo",
+      "model": "utilisateur",
+      "foreignKey": "utilisateurId"
+    },
+    "playlist": {
+      "type": "belongsTo",
+      "model": "playlist",
+      "foreignKey": "playlistId"
+    }
+  },
+  "acls": [
+  ],
+  "methods": {}
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+<% include ../home.ejs %>
+
+<h2>
+    Playlists <% if(admin) { %> de <%= utilisateur.username %><% } %>
+</h2>
+
+<form method="post">
+
+    <% if(admin) { %>
+        <a href="/admin/playlist/<%= utilisateur.id %>/new">Créer une nouvelle playlist</a><br><br>
+    <% } else {%>
+        <a href="/admin/playlist/new">Créer une nouvelle playlist</a><br><br>
+    <% } %>
+
+    <input type="submit" value="Supprimer la sélection">
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Holocube(s)</th>
+            <th>Video(s)</th>
+        </tr>
+        <% playlists.forEach(function(playlist) { %>
+        <tr>
+            <td><%= playlist.nomPlaylist %></td>
+            <td><% holocubes.forEach(function(holocube) {if(playlist.id === holocube.playlistId){%> <%=holocube.nomHolocube%><br> <%}})%> %></td>
+            <td><% playlistsVideos.forEach(function(playlistVideo) {if(playlist.id === playlistVideo.playlistId)
+                {videos.forEach(function (video) {if(playlistVideo.videoId === video.id) {%> <%=video.nomVideo%><br> <%}})}}) %></td>
+            <% if(admin) { %>
+                <td><a href="/admin/playlist/<%= playlist.id %>/edit/<%= utilisateur.id %>">Modifier</a></td>
+                <td><a href="/admin/playlist/<%= playlist.id %>/delete/<%= utilisateur.id %>">Supprimer</a></td>
+            <% } else {%>
+                <td><a href="/admin/playlist/<%= playlist.id %>/edit">Modifier</a></td>
+                <td><a href="/admin/playlist/<%= playlist.id %>/delete">Supprimer</a></td>
+            <% } %>
+            <td><input type="checkbox" name="supprimer" value="<%= playlist.id %>"></td>
+        </tr>
+        <% }); %>
+    </table>
+
+</form>
+
+<br>
+<% if (err) { %>
+<span style="color:red">Il y a eu un problème lors de la suppression, veuillez recommencer</span>
+<% } %>
+
+<br><br>
+<% if(admin) { %>
+    <a href="/admin/clientplaylist">Retourner à la liste des clients</a>
+<% } %>
+
+
+</body>
+</html>

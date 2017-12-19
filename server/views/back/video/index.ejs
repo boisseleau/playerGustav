@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GustavByCocktail Player</title>
+</head>
+<body>
+
+<% include ../home.ejs %>
+
+<h2>Vidéos</h2>
+
+<% if(role === "superAdmin") { %>
+
+<form method="post">
+
+    <a href="/admin/video/new">Ajouter une nouvelle video</a><br><br>
+
+    <input type="submit" value="Supprimer la sélection">
+
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Client</th>
+            <th>Url</th>
+            <th>Durée</th>
+            <th>Poids</th>
+            <th>Résolution</th>
+            <th>Holographique</th>
+        </tr>
+
+        <% videos.forEach(function(video) { %>
+            <tr>
+                <td><%= video.nomVideo %></td>
+                <td><% utilisateurs.forEach(function(utilisateur) {if(video.utilisateurId === utilisateur.id){%> <%=utilisateur.username%> <%}})%></td>
+                <td><%= video.url %></td>
+                <td><%= video.duree %></td>
+                <td><%= video.poids %></td>
+                <td><%= video.resolution %></td>
+                <% switch (video.holographique) {
+                case 0 : %>
+                <td>Non Holographique</td>
+                <% break;
+
+                case 1 : %>
+                <td>Holographique</td>
+                <% break;
+
+                case 2 : %>
+                <td>Holographique et non holographique</td>
+                <% break;} %>
+
+                <td><a href="/admin/video/<%= video.id %>/delete">Supprimer</a></td>
+                <td><input type="checkbox" name="supprimer" value="<%= video.id %>"></td>
+            </tr>
+        <% }); %>
+    </table>
+</form>
+<% } else {%>
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Durée</th>
+        </tr>
+        <% videos.forEach(function(video) { if(video.utilisateurId === currentUser.id) {%>
+        <tr>
+            <td><%= video.nomVideo %></td>
+            <td><%= video.duree %></td>
+        </tr>
+        <% }}); %>
+    </table>
+<% } %>
+
+<% if (err) { %>
+<span>Il y a eu un problème lors de la suppression, veuillez recommencer</span>
+<% } %>
+
+<% if (forbidden) { %>
+<span style="color:red">Vous n'avez pas l'autorisation nécessaire pour supprimer un holocube</span>
+<% } %>
+
+</body>
+</html>
